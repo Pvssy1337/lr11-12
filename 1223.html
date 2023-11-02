@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myForm">
+        E-mail: <input type="text" id="email"><br>
+        Коментар: <input type="text" id="comment"><br>
+        <input type="submit" value="Надіслати" onclick="validateForm(event)">
+    </form>
+    <p id="result"></p>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            var email = document.getElementById('email').value;
+            var comment = document.getElementById('comment').value;
+            var result = document.getElementById('result');
+
+            if (email === '' || comment === '') {
+                result.innerHTML = "Будь ласка, заповніть усі поля";
+                return false;
+            }
+
+            var re = /\S+@\S+\.\S+/;
+            if (!re.test(email)) {
+                result.innerHTML = "Перевірка адреси не пройдена";
+                return false;
+            }
+
+            result.innerHTML = "Дані успішно надіслані";
+            return true;
+        }
+    </script>
+
+</body>
+
+</html>
